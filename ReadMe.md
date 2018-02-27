@@ -1,4 +1,5 @@
-##LeNet structure Used
+##LeNet structure Used:
+    
     1. Convolution 1: (28, 28, 32)
     2. Max pool 1: (14, 14, 32)
     3. Convolution 2: (14, 14, 64)
@@ -9,7 +10,8 @@
     8. FC 2: (84,)
     9. FC 3: (10,)
 
-##Some Training Details
+##Some Training Details:
+    
     Epoch: 1, loss: 62.53203562926501
     Validation set accuracy: 0.9864
     Training set accuracy: 0.9857090909264304
@@ -92,5 +94,5 @@
     
     Test set accuracy: 0.9926
     
-##Training Validation - Epoch Graph
+##Training Validation - Epoch Graph:
 ![Alt text](training.png)
