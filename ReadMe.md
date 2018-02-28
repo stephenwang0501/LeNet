@@ -1,4 +1,4 @@
-## LeNet structure Used:
+## LeNet Structure Used:
     
     1. Convolution 1: (5, 5, 32)
     2. Bacth normalization 1
