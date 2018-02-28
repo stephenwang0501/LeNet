@@ -37,6 +37,9 @@ class LeNetTrainer:
         self.batch_size = batch_size
         self.epoch = epoch
         self.train_keep_prob = train_keep_prob
+        assert self.learn_rate > 0.0
+        assert self.batch_size > 0
+        assert self.epoch > 0
         assert 0.0 <= self.train_keep_prob <= 1.0
 
     def set_data(self):
@@ -87,6 +90,7 @@ class LeNetTrainer:
 
             validation_x = []
             validation_y = []
+            train_y = []
 
             cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.lenet, labels=self.y_one_hot_tensor)
             loss = tf.reduce_mean(cross_entropy)
@@ -101,8 +105,6 @@ class LeNetTrainer:
                 items = [x for x in range(n_samples)]
 
                 sess.run(tf.global_variables_initializer())
-
-                loss_last = 0.0
 
                 for i in range(self.epoch):
                     loss_cur = 0.0
@@ -133,12 +135,8 @@ class LeNetTrainer:
                     print()
 
                     validation_y.append(accurate_validate)
+                    train_y.append(accurate_train)
                     validation_x.append(i + 1)
-
-                    if abs(loss_cur - loss_last) < 0.1 and accurate_validate >= 0.99:
-                        break
-                    else:
-                        loss_last = loss_cur
 
                 # get test accuracy
                 loss_test = self.evaluation(
@@ -150,5 +148,6 @@ class LeNetTrainer:
                 print('Training validation set accuracy graph:')
                 ax = plt.figure().gca()
                 ax.plot(validation_x, validation_y)
+                ax.plot(validation_x, train_y)
                 ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
                 plt.show()

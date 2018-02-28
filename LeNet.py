@@ -2,8 +2,6 @@ import tensorflow as tf
 
 
 def build_lenet(x, keep_prob):
-    assert x.shape[1:] == (28, 28, 1)
-
     with tf.variable_scope(name_or_scope='LeNet', reuse=tf.AUTO_REUSE):
         print('LeNet structure:')
 
@@ -16,6 +14,9 @@ def build_lenet(x, keep_prob):
             activation=tf.nn.relu,
             kernel_initializer=tf.contrib.layers.xavier_initializer_conv2d())
         print('Convolution 1: {}'.format(net.shape[1:]))
+
+        net = tf.layers.batch_normalization(inputs=net)
+        print('Batch normalization 1: {}'.format(net.shape[1:]))
 
         net = tf.layers.max_pooling2d(
             inputs=net,
@@ -32,6 +33,9 @@ def build_lenet(x, keep_prob):
             activation=tf.nn.relu,
             kernel_initializer=tf.contrib.layers.xavier_initializer_conv2d())
         print('Convolution 2: {}'.format(net.shape[1:]))
+
+        net = tf.layers.batch_normalization(inputs=net)
+        print('Batch normalization 2: {}'.format(net.shape[1:]))
 
         net = tf.layers.max_pooling2d(
             inputs=net,
