@@ -8,7 +8,7 @@
     4. Max pool 2: kernel size (2, 2), stride (2, 2)
     5. Flatten: (3136,)
     6. FC 1: (3136 -> 1024)
-    7. Drop out: (1024 -> 1024)
+    7. Drop out 1
     8. FC 2: (1024 -> 84)
     9. FC 3: (84 -> 10)
 
@@ -17,7 +17,7 @@
     1. Learning rate: 0.001
     2. Drop out keep prob: 0.6
     3. Batch size: 128
-    4. Number of epoches: 40
+    4. Number of epochs: 40
 
 ## Training Results:
     
